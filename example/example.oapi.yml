@@ -1,0 +1,36 @@
+x-responses:
+  &badRequests
+    400:
+      description: Parameter validation fail
+      content:
+        apllication/json:
+          schema: 
+            $ref: schemas/badRequest.yml#/BadRequest
+    404:
+      description: Object not found
+openapi: 3.0.1
+info:
+  title: Demo API
+  version: 1.0.0
+  description: Demo API
+paths:
+  /page/{id}:
+    get:
+      responses:
+        200:
+          description: Page found
+          content:
+            application/json:
+              schema:
+                $ref: schemas/page.yml#/Page
+        <<: *badRequests
+components:
+  requestBodies:
+    Sas:
+      content:
+        application/json:
+          schema:
+            $ref: schemas/page.yml#/Page
+
+
+
